@@ -15,3 +15,6 @@ node_modules/
 __pycache__/
 .DS_Store
 Thumbs.db
+
+# Isolated synthetic browser run artifacts
+02_Tests/pr1_evidence/

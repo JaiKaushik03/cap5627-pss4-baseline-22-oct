@@ -1,0 +1,14 @@
+{
+  "version": "PSS4-offline-1.2.1",
+  "freeze_date": "2026-10-21",
+  "timezone": "America/New_York",
+  "procedure": "Fixed B then A; mapping deferred until both independent manual codes; no frequency clarification or structured fallback during collection",
+  "prior_pr_head": "805dd4e7dcbb6b3cee1ee42512091c3247943ddf",
+  "hash_method": "SHA-256 of UTF-8 source normalized to LF line endings",
+  "files": {
+    "app.js": "0f372118d1bd8fb7123866fa0dee198128f3bf5ee7ba298d0e8d6f3fb069c765",
+    "core.js": "20a33872d48bcc5284c8a63435155c8d610489e4b5540a0f2f7133db069aae37",
+    "index.html": "fe42aeeeb5c76c254c7f03f13741eec27296f4620c3131078558a38320695fed",
+    "style.css": "28e585cdc99f560e5af13cbf1dc3628303c2eddc6bc1d4e10edd1861b0b0aeb2"
+  }
+}

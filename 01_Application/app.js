@@ -3,10 +3,16 @@ const $=id=>document.getElementById(id);let rows=[],trial=null,session=null,comp
 $('version').textContent=PSS.VERSION;
 const STORAGE_KEY='CAP5627_PSS4_'+PSS.VERSION;
 function persist(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify({version:PSS.VERSION,rows,active:trial&&trial.state!=='done'?{meta:trial.meta,q:trial.q,history:trial.history,clarifications:trial.clarifications}:null}));$('storage').textContent='Local recovery is available. Export CSV and JSON after each session.';}catch(e){$('storage').textContent='Local recovery unavailable. Export before refreshing or closing this tab.';}}
-function interruptCurrent(note){if(!trial||trial.state==='done')return;trial.finish(null,false,null);const r=trial.rows.at(-1);r.response_ms=null;r.condition_ms=null;r.condition_end='';r.error_notes=note;trial.rows.slice(0,-1).forEach(x=>{x.condition_ms=null;x.condition_end='';x.error_notes=note;});for(const x of trial.rows)if(!rows.some(y=>y.trial_id===x.trial_id))rows.push(x);trial=null;persist();}
+function interruptCurrent(note){if(!trial||trial.state==='done')return;trial.finish(null,false,null);const r=trial.rows.at(-1);r.response_ms=null;r.condition_ms=null;r.condition_end='';r.error_notes=note;if(r.condition==='B'&&r.collection_mode==='deferred')r.mapping_status='unanswered';trial.rows.slice(0,-1).forEach(x=>{x.condition_ms=null;x.condition_end='';x.error_notes=note;});for(const x of trial.rows)if(!rows.some(y=>y.trial_id===x.trial_id))rows.push(x);trial=null;persist();}
 function restore(){try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null');if(!saved)return;PSS.validateRows(saved.rows);rows=saved.rows;if(saved.active){const x=saved.active;trial=new PSS.Trial(x.meta);trial.q=x.q;trial.history=x.history;trial.clarifications=x.clarifications;rows.filter(r=>r.session_id===x.meta.session_id&&r.condition===x.meta.condition).forEach(r=>{r.error_notes='Interrupted by refresh or browser restart';r.condition_ms=null;r.condition_end='';});interruptCurrent('Interrupted by refresh or browser restart; elapsed time unavailable');} $('storage').textContent='Previous rows recovered locally. Interrupted conditions are flagged. Export before starting another session.';}catch(e){$('storage').textContent='Recovery could not be read: '+e.message+' Keep any exported backups.';}}
 
-function view(id){document.querySelector('.research').hidden=id==='question'||id==='between'&&completed.length<2;['setup','question','between'].forEach(x=>$(x).hidden=x!==id);$('researcher').open=false;}
+function view(id){
+ document.querySelector('.research').hidden=id!=='research';
+ ['setup','question','between'].forEach(x=>$(x).hidden=x!==id);
+ $('openResearch').hidden=id==='question'||id==='between'&&completed.length<2;
+ $('openResearch').textContent=id==='research'?'Return to participant setup':'Researcher workspace';
+ $('researcher').open=id==='research';
+}
 function refresh(){ $('count').textContent=rows.length+' recorded item rows. Export before closing, refreshing, or clearing.';const body=$('log');body.replaceChildren();for(const r of rows.slice(-24)){const tr=document.createElement('tr');[r.participant_id,r.condition,r.question,r.auto_category??'—',r.clarification_count,r.fallback,r.trial_type].forEach(v=>{const td=document.createElement('td');td.textContent=v;tr.append(td);});body.append(tr);} }
 function begin(){const condition=session.condition_order[completed.length];trial=new PSS.Trial({...session,condition});view('question');render();persist();}
 function render(){ $('progress').textContent='Condition '+trial.meta.condition+' · Question '+(trial.q+1)+' of 4';$('qtext').textContent=PSS.QUESTIONS[trial.q];$('qtext').focus();$('answer').value='';$('error').textContent='';const fixed=trial.meta.condition==='A'||trial.state==='fallback';$('free').hidden=fixed;$('choices').replaceChildren();if(fixed)PSS.CATEGORIES.forEach((c,i)=>{const label=document.createElement('label');label.className='option';const radio=document.createElement('input');radio.type='radio';radio.name='category';radio.value=i;label.append(radio,document.createTextNode(c));$('choices').append(label);});$('prompt').textContent=trial.state==='clarification'?'Could you describe how often that happened during the last month?':trial.state==='fallback'?'Please choose the option that best describes your experience during the last month.':trial.state==='empty_prompt'?'Please provide a response. If you leave it empty again, this item will be recorded as unanswered.':fixed?'Choose one response.':'Please answer in your own words.'; }
@@ -17,7 +23,7 @@ function download(name,data,mime){const url=URL.createObjectURL(new Blob([data],
 $('export').onclick=()=>download('PSS4_trials_'+new Date().toISOString().replace(/[:.]/g,'-')+'.csv',PSS.csv(rows),'text/csv;charset=utf-8');
 $('json').onclick=()=>download('PSS4_backup_'+Date.now()+'.json',JSON.stringify({version:PSS.VERSION,rows},null,2),'application/json');
 $('import').onchange=async e=>{try{let pending=[];for(const file of e.target.files){const obj=JSON.parse(await file.text());if(obj.version!==PSS.VERSION||!Array.isArray(obj.rows))throw Error('Unsupported backup version or structure.');PSS.validateRows(obj.rows);pending.push(...obj.rows);}const ids=new Set(rows.map(r=>r.trial_id));let added=0;for(const r of pending){if(ids.has(r.trial_id))continue;rows.push(r);ids.add(r.trial_id);added++;}persist();refresh();alert(added+' rows loaded. Duplicate trial IDs were skipped.');}catch(err){alert(err.message);}e.target.value='';};
-$('analyze').onclick=()=>{const type=$('analysisType').value;$('summary').textContent=JSON.stringify({timing_note:'Offline form times, not eEVA conversational times. Fixed BA order.',manual_researcher_1:PSS.manualAgreement(rows,type,'human_1'),manual_researcher_2:PSS.manualAgreement(rows,type,'human_2'),automatic:PSS.analyze(rows,type)},null,2);};
+$('analyze').onclick=()=>{const type=$('analysisType').value;$('summary').textContent=JSON.stringify({timing_note:'Offline form times, not eEVA conversational times. Fixed BA order.',manual_researcher_1:PSS.manualAgreement(rows,type,'human_1'),manual_researcher_2:PSS.manualAgreement(rows,type,'human_2'),comparisons:PSS.manualComparisons(rows,type),automatic:PSS.analyze(rows,type)},null,2);};
 $('map').onclick=()=>{$('mapResult').textContent='SYNTHETIC TEST DATA\n'+JSON.stringify(PSS.mapResponse($('mapText').value),null,2);};
 function clean(){trial=null;session=null;completed=[];document.querySelectorAll('textarea').forEach(x=>x.value='');$('startForm').reset();view('setup');persist();refresh();}
 $('new').onclick=()=>{if(trial&&trial.state!=='done'&&!confirm('Abandon the incomplete condition? Completed conditions remain recorded; partial items will be retained with an error note.'))return;if(trial&&trial.state!=='done')interruptCurrent('Condition abandoned before completion');clean();};
@@ -36,13 +42,8 @@ $('loadCoding').onclick=()=>{
  }
 };
 $('runMapper').onclick=()=>{try{if(!confirm('Have both researchers finished coding independently? Automatic results will now be generated.'))return;PSS.runDeferred(rows,$('analysisType').value);persist();refresh();$('coding').replaceChildren();$('analyze').click();}catch(e){alert(e.message);}};
-$('paired').onclick=()=>{
- const table=[['Response ID','Participant','Question ID','Closed-ended answer','Free-text answer','Predicted category','Agree? (1 = yes)','Completion time (s)','Notes']];
- const type=$('analysisType').value;
- for(const b of rows.filter(r=>r.trial_type===type&&r.condition==='B')){
- const a=rows.find(r=>r.trial_type===type&&r.session_id===b.session_id&&r.question===b.question&&r.condition==='A');
- table.push([b.trial_id,b.participant_id,b.question,a?.closed_category??'',b.original_response,b.auto_category??'',PSS.validCategory(a?.closed_category)&&PSS.validCategory(b.auto_category)?Number(a.closed_category===b.auto_category):'',b.response_ms===null?'':b.response_ms/1000,'B free-text item time in offline form; fixed BA; mapper '+b.mapping_status+'; '+(b.error_notes||'')]);
- }
- const csv=table.map(row=>row.map(v=>{let s=String(v);if(/^[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';}).join(',')).join('\r\n');
- download('PSS4_official_v2_left_block.csv','\ufeff'+csv,'text/csv;charset=utf-8');
-};
+$('paired').onclick=()=>download('PSS4_official_v2_left_block.csv',PSS.pairedCSV(rows,$('analysisType').value),'text/csv;charset=utf-8');
+$('blindJai').onclick=()=>download('PSS4_blind_manual_Jai.csv',PSS.codingCSV(rows,$('analysisType').value,'human_1',true),'text/csv;charset=utf-8');
+$('blindValentina').onclick=()=>download('PSS4_blind_manual_Valentina.csv',PSS.codingCSV(rows,$('analysisType').value,'human_2',true),'text/csv;charset=utf-8');
+$('codingExport').onclick=()=>download('PSS4_manual_comparison.csv',PSS.codingCSV(rows,$('analysisType').value),'text/csv;charset=utf-8');
+$('openResearch').onclick=()=>view(document.querySelector('.research').hidden?'research':'setup');

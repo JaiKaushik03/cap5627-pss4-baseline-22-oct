@@ -1,5 +1,7 @@
 # CAP 5627 Project 2.1 offline classroom package
 
+**Current fallback instructions:** [FALLBACK_WORKFLOW.md](FALLBACK_WORKFLOW.md). Version 1.2.1 uses fixed free-text-first BA order and defers mapping until independent manual coding. Earlier AB/BA instructions, 28-column replacement workbooks and reports below describe version 1.1.0; keep them as historical materials. Do not paste the new 32-column export into the old 28-column sheet. Valentina owns the official v2 trial log and protocol.
+
 Version PSS4-offline-1.1.0, frozen October 21 2026. This continues the recovered implementation. The original application, tests, partial screenshots and task tracker are preserved under 07_Backups.
 
 The offline software and collection infrastructure are verified. Human dry runs, genuine baseline responses and actual hours remain pending. eEVA integration was not verified. No presentation, professor message or university submission was created or sent.
