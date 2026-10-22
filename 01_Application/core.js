@@ -1,6 +1,6 @@
 (function(root){
 'use strict';
-const VERSION='PSS4-offline-1.1.0';
+const VERSION='PSS4-offline-1.2.0';
 const QUESTIONS=[
 'In the last month, how often have you felt that you were unable to control the important things in your life?',
 'In the last month, how often have you felt confident about your ability to handle your personal problems?',
@@ -29,7 +29,7 @@ function mapResponse(original){
 }
 function score(raw){return raw.length===4&&raw.every(validCategory)?raw[0]+4-raw[1]+4-raw[2]+raw[3]:null;}
 function validCategory(x){return Number.isInteger(x)&&x>=0&&x<=4;}
-const FIELDS=['trial_id','session_id','participant_id','date','time','version','condition','condition_order','question','original_response','closed_category','auto_category','initial_auto_category','final_category','clarified_response','clarification_count','fallback','mapping_success','unanswered','response_ms','condition_ms','condition_start','condition_end','error_notes','trial_type','notes','history','rule_id'];
+const FIELDS=['trial_id','session_id','participant_id','date','time','version','condition','condition_order','question','original_response','closed_category','auto_category','initial_auto_category','final_category','clarified_response','clarification_count','fallback','mapping_success','unanswered','response_ms','condition_ms','condition_start','condition_end','error_notes','trial_type','notes','history','rule_id','collection_mode','mapping_status','human_1','human_2'];
 function csv(rows){return '\ufeff'+[FIELDS,...rows.map(r=>FIELDS.map(f=>r[f]??''))].map(a=>a.map(v=>{let s=String(v);if(/^[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';}).join(',')).join('\r\n');}
 class Trial{
  constructor(meta,clock=()=>performance.now(),wall=()=>new Date().toISOString()){
@@ -40,6 +40,15 @@ class Trial{
   if(this.meta.condition==='A'||this.state==='fallback'){
    if(!validCategory(value))throw Error('Choose a category from 0 to 4');
    return this.finish(value,this.meta.condition==='B',null);
+  }
+  if(this.meta.collection_mode==='deferred'){
+   const text=String(value).trim();
+   if(!text)throw Error('Please enter a response, or end the session if you wish to stop.');
+   this.history.push({original:text,status:'pending'});
+   const state=this.finish(null,false,null);
+   this.rows.at(-1).unanswered=0;
+   this.rows.at(-1).mapping_status='pending';
+   return state;
   }
   const m=mapResponse(value);this.history.push(m);
   if(m.status==='empty'){
@@ -52,7 +61,7 @@ class Trial{
   this.state='fallback';return this.state;
  }
  finish(category,fallback,m){
-  const end=this.wall(), first=this.history[0], last=this.history.at(-1), row={...this.meta,version:VERSION,trial_id:this.meta.session_id+'-'+this.meta.condition+'-'+(this.q+1),question:this.q+1,date:end.slice(0,10),time:end.slice(11),original_response:this.meta.condition==='A'?(CATEGORIES[category]??''):first?.original??'',closed_category:this.meta.condition==='A'?category:null,auto_category:m?category:null,initial_auto_category:first?.status==='mapped'?first.category:null,final_category:category,clarified_response:this.history.length>1?last.original:'',clarification_count:this.clarifications,fallback:Number(fallback),mapping_success:Number(!!m),unanswered:Number(category===null),response_ms:Math.max(0,Math.round(this.clock()-this.itemT)),condition_ms:null,condition_start:this.started,condition_end:'',error_notes:'',history:JSON.stringify(this.history),rule_id:m?.rule_id??''};
+  const end=this.wall(), first=this.history[0], last=this.history.at(-1), row={...this.meta,version:VERSION,collection_mode:this.meta.collection_mode||'interactive',mapping_status:this.meta.condition==='A'?'not applicable':'interactive',human_1:null,human_2:null,trial_id:this.meta.session_id+'-'+this.meta.condition+'-'+(this.q+1),question:this.q+1,date:end.slice(0,10),time:end.slice(11),original_response:this.meta.condition==='A'?(CATEGORIES[category]??''):first?.original??'',closed_category:this.meta.condition==='A'?category:null,auto_category:m?category:null,initial_auto_category:first?.status==='mapped'?first.category:null,final_category:category,clarified_response:this.history.length>1?last.original:'',clarification_count:this.clarifications,fallback:Number(fallback),mapping_success:Number(!!m),unanswered:Number(category===null),response_ms:Math.max(0,Math.round(this.clock()-this.itemT)),condition_ms:null,condition_start:this.started,condition_end:'',error_notes:'',history:JSON.stringify(this.history),rule_id:m?.rule_id??''};
   this.rows.push(row);this.q++;this.history=[];this.clarifications=0;this.emptyCount=0;this.itemT=this.clock();
   this.state=this.q===4?'done':'response';
   if(this.state==='done'){const elapsed=Math.max(0,Math.round(this.clock()-this.t0));this.rows.forEach(r=>{r.condition_ms=elapsed;r.condition_end=end;});}
@@ -101,6 +110,19 @@ function validateRows(rows){
  if(ids.has(r.trial_id))throw Error('Duplicate trial ID inside backup.');ids.add(r.trial_id);
  }return true;
 }
-const api={agreementStats,validateRows,VERSION,QUESTIONS,CATEGORIES,RULES,FIELDS,normalize,mapResponse,validCategory,score,csv,Trial,median,analyze};
+function runDeferred(rows,type){
+ const targets=rows.filter(r=>r.trial_type===type&&r.condition==='B'&&r.collection_mode==='deferred');
+ if(!targets.length)throw Error('No collected free-text responses in this dataset.');
+ if(targets.some(r=>![0,1,2,3,4,'unclear'].includes(r.human_1)||![0,1,2,3,4,'unclear'].includes(r.human_2)))throw Error('Both researchers must code every free-text response before running the mapper.');
+ for(const r of targets){if(r.mapping_status!=='pending')continue;const m=mapResponse(r.original_response);r.auto_category=m.category;r.initial_auto_category=m.category;r.final_category=m.category;r.mapping_success=Number(m.status==='mapped');r.mapping_status=m.status;r.rule_id=m.rule_id;}
+ return targets.length;
+}
+function manualAgreement(rows,type,field){
+ const pairs=[];for(const b of rows.filter(r=>r.trial_type===type&&r.condition==='B')){
+ const a=rows.filter(r=>r.trial_type===type&&r.session_id===b.session_id&&r.version===b.version&&r.question===b.question&&r.condition==='A');
+ if(a.length===1&&validCategory(a[0].closed_category)&&validCategory(b[field]))pairs.push([a[0].closed_category,b[field]]);
+ }return agreementStats(pairs);
+}
+const api={runDeferred,manualAgreement,agreementStats,validateRows,VERSION,QUESTIONS,CATEGORIES,RULES,FIELDS,normalize,mapResponse,validCategory,score,csv,Trial,median,analyze};
 root.PSS=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
