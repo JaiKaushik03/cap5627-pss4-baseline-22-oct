@@ -1,0 +1,42 @@
+{
+  "version": "PSS4-offline-1.1.0",
+  "checked_utc": "2026-10-21T23:00:08.516598+00:00",
+  "unit": {
+    "total": 80,
+    "passed": 80,
+    "failed": 0
+  },
+  "browser": {
+    "total": 36,
+    "passed": 36,
+    "failed": 0
+  },
+  "spreadsheet": {
+    "total": 44,
+    "passed": 44,
+    "failed": 0
+  },
+  "native_excel": {
+    "total": 25,
+    "passed": 25,
+    "failed": 0
+  },
+  "word_pages": [
+    7,
+    7
+  ],
+  "protocol_pages": 1,
+  "real_trial_rows": 0,
+  "screenshots": 13,
+  "freeze_hashes_match": true,
+  "archive_integrity_checked": true,
+  "remaining": [
+    "Human team dry runs",
+    "Actual classmate pilot data and consent",
+    "Genuine baseline results",
+    "Actual hours confirmation",
+    "Valentina presentation and submission",
+    "Official trial-log template alignment",
+    "Later SUS and eEVA work"
+  ]
+}

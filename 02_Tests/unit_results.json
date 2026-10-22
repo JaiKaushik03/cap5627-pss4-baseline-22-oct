@@ -1,0 +1,330 @@
+{
+  "label": "SYNTHETIC TEST DATA — software verification only",
+  "executed_at": "2026-10-21T22:57:18.843Z",
+  "version": "PSS4-offline-1.1.0",
+  "total": 80,
+  "passed": 80,
+  "failed": 0,
+  "results": [
+    {
+      "name": "Mapper \"Never\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"Almost never\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"Sometimes\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"Fairly often\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"Very often\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"Rarely\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"Occasionally\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"Almost every day\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"Hardly ever\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"Pretty frequently\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \" NOT OFTEN! \"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"not very often\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \" I feel this, SOMETIMES. \"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"nevermore\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"I don't know\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"It depends\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"Maybe\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"I'm not sure\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"I experience this sometimes and other times constantly\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"not sometimes\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"not never\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"I don't feel confident very often\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"3 times last month\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"never except sometimes\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"less frequently\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"   \"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"Sometimes, sometimes\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"very often but only at work\"",
+      "pass": true
+    },
+    {
+      "name": "Mapper \"not at all\"",
+      "pass": true
+    },
+    {
+      "name": "Exact questionnaire wording and order",
+      "pass": true
+    },
+    {
+      "name": "Five original categories",
+      "pass": true
+    },
+    {
+      "name": "A rejects missing category",
+      "pass": true
+    },
+    {
+      "name": "A stores raw categories, advances and finishes",
+      "pass": true
+    },
+    {
+      "name": "Timing records actual injected elapsed milliseconds",
+      "pass": true
+    },
+    {
+      "name": "Completed condition rejects extra response",
+      "pass": true
+    },
+    {
+      "name": "B clear mapping",
+      "pass": true
+    },
+    {
+      "name": "B ambiguity requests exactly one clarification",
+      "pass": true
+    },
+    {
+      "name": "B clarification resolved automatically",
+      "pass": true
+    },
+    {
+      "name": "B unresolved clarification falls back",
+      "pass": true
+    },
+    {
+      "name": "Two empty responses mark unanswered and finish",
+      "pass": true
+    },
+    {
+      "name": "Empty retry can resolve",
+      "pass": true
+    },
+    {
+      "name": "Empty after clarification is bounded",
+      "pass": true
+    },
+    {
+      "name": "No state leaks to new trial",
+      "pass": true
+    },
+    {
+      "name": "Raw scoring reverses only Q2 and Q3",
+      "pass": true
+    },
+    {
+      "name": "Minimum score",
+      "pass": true
+    },
+    {
+      "name": "Maximum score",
+      "pass": true
+    },
+    {
+      "name": "Incomplete score unavailable",
+      "pass": true
+    },
+    {
+      "name": "Fallback/unanswered excluded from automatic agreement",
+      "pass": true
+    },
+    {
+      "name": "Coverage denominator includes every conversational item",
+      "pass": true
+    },
+    {
+      "name": "Clarification rate",
+      "pass": true
+    },
+    {
+      "name": "Fallback rate",
+      "pass": true
+    },
+    {
+      "name": "Synthetic trials excluded by default",
+      "pass": true
+    },
+    {
+      "name": "No data rates and kappa unavailable",
+      "pass": true
+    },
+    {
+      "name": "Duplicate pairing rejected",
+      "pass": true
+    },
+    {
+      "name": "Version mismatch cannot pair",
+      "pass": true
+    },
+    {
+      "name": "Unweighted kappa hand calculation",
+      "pass": true
+    },
+    {
+      "name": "Degenerate kappa unavailable",
+      "pass": true
+    },
+    {
+      "name": "Median handles even, odd and empty",
+      "pass": true
+    },
+    {
+      "name": "Completion summary counts each condition once",
+      "pass": true
+    },
+    {
+      "name": "Incomplete conditions excluded from timing",
+      "pass": true
+    },
+    {
+      "name": "CSV quotes commas, quotes and line breaks",
+      "pass": true
+    },
+    {
+      "name": "CSV neutralizes spreadsheet formula injection",
+      "pass": true
+    },
+    {
+      "name": "CSV includes BOM and complete schema",
+      "pass": true
+    },
+    {
+      "name": "Quite frequently uses documented category three",
+      "pass": true
+    },
+    {
+      "name": "First-response agreement stays separate from resolved clarification",
+      "pass": true
+    },
+    {
+      "name": "Offline fallback baseline dataset can be selected",
+      "pass": true
+    },
+    {
+      "name": "Synthetic software dataset excluded from actual baseline",
+      "pass": true
+    },
+    {
+      "name": "First-response kappa independent hand calculation",
+      "pass": true
+    },
+    {
+      "name": "First-response agreement zero data is unavailable",
+      "pass": true
+    },
+    {
+      "name": "All collected participants counted despite no eligible pairs",
+      "pass": true
+    },
+    {
+      "name": "Complete questionnaire scores recorded",
+      "pass": true
+    },
+    {
+      "name": "Unanswered questionnaire score unavailable",
+      "pass": true
+    },
+    {
+      "name": "Interrupted A item retains full schema",
+      "pass": true
+    },
+    {
+      "name": "Backup row schema accepted",
+      "pass": true
+    },
+    {
+      "name": "Backup duplicate rejected",
+      "pass": true
+    },
+    {
+      "name": "Backup invalid category rejected",
+      "pass": true
+    },
+    {
+      "name": "Backup contradictory mapping rejected",
+      "pass": true
+    },
+    {
+      "name": "Backup negative timing rejected",
+      "pass": true
+    },
+    {
+      "name": "Different sessions never pair silently",
+      "pass": true
+    }
+  ]
+}

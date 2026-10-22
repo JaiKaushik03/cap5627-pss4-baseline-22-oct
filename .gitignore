@@ -1,0 +1,17 @@
+# Keep real study responses private
+participant_data/
+study_data/
+private_data/
+PSS4_trials_*.csv
+PSS4_backup_*.json
+~$*
+
+# Credentials, caches and local dependencies
+.env
+.env.*
+*.pem
+*.key
+node_modules/
+__pycache__/
+.DS_Store
+Thumbs.db

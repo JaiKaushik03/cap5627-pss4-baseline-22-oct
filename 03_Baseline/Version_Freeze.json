@@ -1,0 +1,15 @@
+{
+  "project": "CAP 5627 Project 2.1",
+  "implementation": "Offline browser PSS4 fallback",
+  "version": "PSS4-offline-1.1.0",
+  "freeze_date": "2026-10-21",
+  "freeze_recorded_utc": "2026-10-21T22:56:17.977445+00:00",
+  "git_commit": null,
+  "settings": "Deterministic English frequency rules; one neutral clarification; structured fallback; two consecutive empty answers unanswered; primary initial mapping agreement; raw categories 0 to 4; no runtime dependencies",
+  "files": {
+    "01_Application\\app.js": "abbf77fbbbb06bfc6e0fec81d0710e3d220d43a6d9487e7dbca59080ff9ff7f8",
+    "01_Application\\core.js": "5aeba9a32b8f88e6fe0d7aff6ae278136d7303d27568938eac340b3bcb256615",
+    "01_Application\\index.html": "a4fe33c4d6ab38967f0de2b4b9e1dc778e022352c71e0acca74011d6af3426e8",
+    "01_Application\\style.css": "1dda52e7066e803818685f6da53961cf10b182c1b01fd7cff8f609f17038cd66"
+  }
+}

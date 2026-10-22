@@ -1,0 +1,157 @@
+{
+  "label": "SYNTHETIC TEST DATA — actual offline Chromium execution",
+  "executed_at": "2026-10-21T22:53:48.266Z",
+  "browser": "155.0.4283.62",
+  "total": 36,
+  "passed": 36,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Launch using file URL with browser offline",
+      "pass": true
+    },
+    {
+      "name": "A shows five unselected options",
+      "pass": true
+    },
+    {
+      "name": "Missing A selection does not advance",
+      "pass": true
+    },
+    {
+      "name": "Correct A item 1",
+      "pass": true
+    },
+    {
+      "name": "Correct A item 2",
+      "pass": true
+    },
+    {
+      "name": "Correct A item 3",
+      "pass": true
+    },
+    {
+      "name": "Correct A item 4",
+      "pass": true
+    },
+    {
+      "name": "A completes four questions",
+      "pass": true
+    },
+    {
+      "name": "B hides fixed options initially",
+      "pass": true
+    },
+    {
+      "name": "Clear mapping advances B item",
+      "pass": true
+    },
+    {
+      "name": "Ambiguity prompts neutral clarification",
+      "pass": true
+    },
+    {
+      "name": "Second unclear response exposes five fallback choices",
+      "pass": true
+    },
+    {
+      "name": "Empty answer prompts once",
+      "pass": true
+    },
+    {
+      "name": "Second empty answer advances",
+      "pass": true
+    },
+    {
+      "name": "Dry runs excluded from actual analysis",
+      "pass": true
+    },
+    {
+      "name": "Export contains eight rows and anonymous code",
+      "pass": true
+    },
+    {
+      "name": "Fallback never counted as automatic mapping",
+      "pass": true
+    },
+    {
+      "name": "Unanswered item recorded",
+      "pass": true
+    },
+    {
+      "name": "Measured timing numeric and nonnegative",
+      "pass": true
+    },
+    {
+      "name": "New participant has clean setup",
+      "pass": true
+    },
+    {
+      "name": "BA order starts B",
+      "pass": true
+    },
+    {
+      "name": "BA order continues A",
+      "pass": true
+    },
+    {
+      "name": "Reset removes cohort rows",
+      "pass": true
+    },
+    {
+      "name": "JSON backup restores exported rows",
+      "pass": true
+    },
+    {
+      "name": "Refresh recovery retains answered and interrupted item rows",
+      "pass": true
+    },
+    {
+      "name": "Recovery flags interrupted condition",
+      "pass": true
+    },
+    {
+      "name": "Clarification can resolve to automatic category",
+      "pass": true
+    },
+    {
+      "name": "Mobile questionnaire has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Later participant rows keep separate participant codes",
+      "pass": true
+    },
+    {
+      "name": "Clarified automatic result keeps original and clarification text",
+      "pass": true
+    },
+    {
+      "name": "Researcher can analyze selected synthetic dataset",
+      "pass": true
+    },
+    {
+      "name": "Actual fallback analysis excludes all synthetic rows",
+      "pass": true
+    },
+    {
+      "name": "Incomplete conditions excluded from completed timing summaries",
+      "pass": true
+    },
+    {
+      "name": "Browser executes all unit tests",
+      "pass": true
+    },
+    {
+      "name": "No external network requests",
+      "pass": true
+    },
+    {
+      "name": "No browser errors",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "external_requests": [],
+  "browser_unit_total": 80
+}

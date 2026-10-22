@@ -1,0 +1,160 @@
+{
+  "label": "Native Microsoft Excel verification with synthetic fixtures only",
+  "executed_at": "2026-10-21T22:59:59.2924669Z",
+  "excel_version": "16.0",
+  "total": 25,
+  "passed": 25,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Excel formula B7",
+      "actual": 2.0,
+      "expected": 2,
+      "pass": true
+    },
+    {
+      "name": "Excel formula B9",
+      "actual": 0.5,
+      "expected": 0.5,
+      "pass": true
+    },
+    {
+      "name": "Excel formula B11",
+      "actual": 0.3333333333333333,
+      "expected": 0.3333333333333333,
+      "pass": true
+    },
+    {
+      "name": "Excel formula B13",
+      "actual": 3.0,
+      "expected": 3,
+      "pass": true
+    },
+    {
+      "name": "Excel formula B16",
+      "actual": 0.5714285714285714,
+      "expected": 0.5714285714285714,
+      "pass": true
+    },
+    {
+      "name": "Excel formula I9",
+      "actual": 0.75,
+      "expected": 0.75,
+      "pass": true
+    },
+    {
+      "name": "Excel formula I11",
+      "actual": 0.5,
+      "expected": 0.5,
+      "pass": true
+    },
+    {
+      "name": "Excel formula I13",
+      "actual": 0.25,
+      "expected": 0.25,
+      "pass": true
+    },
+    {
+      "name": "Excel formula C33",
+      "actual": 4.0,
+      "expected": 4,
+      "pass": true
+    },
+    {
+      "name": "Excel formula C34",
+      "actual": 8.0,
+      "expected": 8,
+      "pass": true
+    },
+    {
+      "name": "Native participant count",
+      "actual": 1.0,
+      "expected": 1,
+      "pass": true
+    },
+    {
+      "name": "Native A total score",
+      "actual": 8.0,
+      "expected": 8,
+      "pass": true
+    },
+    {
+      "name": "Native B total score",
+      "actual": 8.0,
+      "expected": 8,
+      "pass": true
+    },
+    {
+      "name": "Real workbook contains no data",
+      "actual": null,
+      "expected": "",
+      "pass": true
+    },
+    {
+      "name": "Trial table filters available",
+      "actual": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "Real eligible pairs zero",
+      "actual": 0.0,
+      "expected": 0,
+      "pass": true
+    },
+    {
+      "name": "Real percent agreement blank",
+      "actual": "",
+      "expected": "",
+      "pass": true
+    },
+    {
+      "name": "Real kappa blank",
+      "actual": "",
+      "expected": "",
+      "pass": true
+    },
+    {
+      "name": "Tracker opens with three original tabs",
+      "actual": 3,
+      "expected": 3,
+      "pass": true
+    },
+    {
+      "name": "Original eEVA owner preserved",
+      "actual": "Valentina",
+      "expected": "Valentina",
+      "pass": true
+    },
+    {
+      "name": "Article Analysis preserved",
+      "actual": "Valentina",
+      "expected": "Valentina",
+      "pass": true
+    },
+    {
+      "name": "CSV has 28 columns in Excel",
+      "actual": 28,
+      "expected": 28,
+      "pass": true
+    },
+    {
+      "name": "CSV has header plus eight item rows",
+      "actual": 9,
+      "expected": 9,
+      "pass": true
+    },
+    {
+      "name": "CSV comma quote and newline preserved",
+      "actual": "Synthetic text, \"quoted\"\nsecond line",
+      "expected": "Synthetic text, \"quoted\"\nsecond line",
+      "pass": true
+    },
+    {
+      "name": "CSV category zero numeric",
+      "actual": 0.0,
+      "expected": 0,
+      "pass": true
+    }
+  ]
+}

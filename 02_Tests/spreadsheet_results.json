@@ -1,0 +1,273 @@
+{
+  "label": "SYNTHETIC TESTS ONLY",
+  "executed_at": "2026-10-21T22:54:52.186Z",
+  "total": 44,
+  "passed": 44,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Fixture I32",
+      "actual": 1,
+      "expected": 1,
+      "pass": true
+    },
+    {
+      "name": "Fixture B7",
+      "actual": 2,
+      "expected": 2,
+      "pass": true
+    },
+    {
+      "name": "Fixture B8",
+      "actual": 1,
+      "expected": 1,
+      "pass": true
+    },
+    {
+      "name": "Fixture B9",
+      "actual": 0.5,
+      "expected": 0.5,
+      "pass": true
+    },
+    {
+      "name": "Fixture B10",
+      "actual": 0.25,
+      "expected": 0.25,
+      "pass": true
+    },
+    {
+      "name": "Fixture B11",
+      "actual": 0.3333333333333333,
+      "expected": 0.3333333333333333,
+      "pass": true
+    },
+    {
+      "name": "Fixture B13",
+      "actual": 3,
+      "expected": 3,
+      "pass": true
+    },
+    {
+      "name": "Fixture B14",
+      "actual": 2,
+      "expected": 2,
+      "pass": true
+    },
+    {
+      "name": "Fixture B15",
+      "actual": 0.6666666666666666,
+      "expected": 0.6666666666666666,
+      "pass": true
+    },
+    {
+      "name": "Fixture B16",
+      "actual": 0.5714285714285714,
+      "expected": 0.5714285714285714,
+      "pass": true
+    },
+    {
+      "name": "Fixture I7",
+      "actual": 4,
+      "expected": 4,
+      "pass": true
+    },
+    {
+      "name": "Fixture I8",
+      "actual": 3,
+      "expected": 3,
+      "pass": true
+    },
+    {
+      "name": "Fixture I9",
+      "actual": 0.75,
+      "expected": 0.75,
+      "pass": true
+    },
+    {
+      "name": "Fixture I10",
+      "actual": 2,
+      "expected": 2,
+      "pass": true
+    },
+    {
+      "name": "Fixture I11",
+      "actual": 0.5,
+      "expected": 0.5,
+      "pass": true
+    },
+    {
+      "name": "Fixture I12",
+      "actual": 1,
+      "expected": 1,
+      "pass": true
+    },
+    {
+      "name": "Fixture I13",
+      "actual": 0.25,
+      "expected": 0.25,
+      "pass": true
+    },
+    {
+      "name": "Fixture I14",
+      "actual": 0,
+      "expected": 0,
+      "pass": true
+    },
+    {
+      "name": "Fixture B33",
+      "actual": 1,
+      "expected": 1,
+      "pass": true
+    },
+    {
+      "name": "Fixture C33",
+      "actual": 4,
+      "expected": 4,
+      "pass": true
+    },
+    {
+      "name": "Fixture D33",
+      "actual": 4,
+      "expected": 4,
+      "pass": true
+    },
+    {
+      "name": "Fixture E33",
+      "actual": 4,
+      "expected": 4,
+      "pass": true
+    },
+    {
+      "name": "Fixture B34",
+      "actual": 1,
+      "expected": 1,
+      "pass": true
+    },
+    {
+      "name": "Fixture C34",
+      "actual": 8,
+      "expected": 8,
+      "pass": true
+    },
+    {
+      "name": "A total score",
+      "actual": 8,
+      "expected": 8,
+      "pass": true
+    },
+    {
+      "name": "B total score",
+      "actual": 8,
+      "expected": 8,
+      "pass": true
+    },
+    {
+      "name": "Independent JS first agreement",
+      "actual": 0.5,
+      "expected": 0.5,
+      "pass": true
+    },
+    {
+      "name": "Independent JS resolved kappa",
+      "actual": 0.5714285714285714,
+      "expected": 0.5714285714285714,
+      "pass": true
+    },
+    {
+      "name": "Duplicate A pair excluded",
+      "actual": 1,
+      "expected": 1,
+      "pass": true
+    },
+    {
+      "name": "Blank closed category not treated as zero",
+      "actual": 1,
+      "expected": 1,
+      "pass": true
+    },
+    {
+      "name": "Version mismatch excluded",
+      "actual": 0,
+      "expected": 0,
+      "pass": true
+    },
+    {
+      "name": "Synthetic excluded from real baseline",
+      "actual": 0,
+      "expected": 0,
+      "pass": true
+    },
+    {
+      "name": "No-pair percent blank",
+      "actual": "",
+      "expected": "",
+      "pass": true
+    },
+    {
+      "name": "No-pair kappa blank",
+      "actual": "",
+      "expected": "",
+      "pass": true
+    },
+    {
+      "name": "Two participants counted",
+      "actual": 2,
+      "expected": 2,
+      "pass": true
+    },
+    {
+      "name": "Two A sessions count",
+      "actual": 2,
+      "expected": 2,
+      "pass": true
+    },
+    {
+      "name": "Even A median",
+      "actual": 5,
+      "expected": 5,
+      "pass": true
+    },
+    {
+      "name": "A min",
+      "actual": 4,
+      "expected": 4,
+      "pass": true
+    },
+    {
+      "name": "A max",
+      "actual": 6,
+      "expected": 6,
+      "pass": true
+    },
+    {
+      "name": "Even B median",
+      "actual": 9,
+      "expected": 9,
+      "pass": true
+    },
+    {
+      "name": "Incomplete B score blank",
+      "actual": "",
+      "expected": "",
+      "pass": true
+    },
+    {
+      "name": "Degenerate kappa blank",
+      "actual": "",
+      "expected": "",
+      "pass": true
+    },
+    {
+      "name": "Empty input has zero eligible pairs",
+      "actual": 0,
+      "expected": 0,
+      "pass": true
+    },
+    {
+      "name": "Empty input timing blank",
+      "actual": "",
+      "expected": "",
+      "pass": true
+    }
+  ]
+}
